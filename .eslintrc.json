@@ -20,6 +20,23 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "object-curly-spacing": ["error", "always"],
+    "comma-dangle": ["error", "never"],
+    "max-len": ["error", { "code": 120 }],
+    "require-jsdoc" : 0,
+    "indent": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "trailingComma": "es5",
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+        "no-unused-vars": ["error"]
+      }
+    ]
   }
 }
