@@ -1,41 +1,80 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  TextField,
+  Stack,
+  Button,
+  Box,
+  FormControlLabel,
+  Switch,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    navigate('/dashboard');
-  };
-
   return (
-    <div className="container-fluid d-flex align-content-center justify-content-center flex-wrap">
-      <Form
-        style={{ width: '22%', minWidth: '20rem' }}
-        className="shadow-lg p-4 mb-5 bg-body rounded"
-        onSubmit={() => handleSubmit()}
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      className="background-login"
+    >
+      <Card
+        elevation={12}
+        sx={{
+          width: '25%',
+          minWidth: 300,
+          borderRadius: '7px',
+        }}
       >
-        <h3 className="mb-4">Log In</h3>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="email" placeholder="Email" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group
-          className="mb-3 d-flex justify-content-between"
-          controlId="formBasicCheckbox"
-        >
-          <Form.Check type="checkbox" label="Remember me" />
-          <Link to={''}>Forgot password</Link>
-        </Form.Group>
-        <Button style={{ width: '100%' }} variant="primary" type="submit">
-          LOG IN
-        </Button>
-      </Form>
-    </div>
+        <CardContent>
+          <Box my={3}>
+            <Typography
+              sx={{ fontWeight: '600', textAlign: 'center', color: '#474747' }}
+              variant="h4"
+              color={''}
+              component="div"
+            >
+              Log in
+            </Typography>
+            <Typography
+              sx={{ fontWeight: '400', textAlign: 'center', color: '#292929' }}
+              variant="subtitle1"
+              color={''}
+            >
+              Sign in on the admin page
+            </Typography>
+          </Box>
+          <Stack spacing={3}>
+            <TextField
+              size="small"
+              id="demo-helper-text-aligned"
+              label="Name"
+            />
+            <TextField
+              size="small"
+              type={'password'}
+              id="demo-helper-text-aligned"
+              label="Password"
+            />
+            <FormControlLabel
+              control={<Switch color="primary" />}
+              label="Remember password"
+            />
+            <Button variant="contained" sx={{ paddingY: 1.3, borderRadius: 2 }}>
+              Log In
+            </Button>
+            <Link style={{ textAlign: 'center', fontSize: 16 }} to={''}>
+              Forgot password
+            </Link>
+          </Stack>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 };
 

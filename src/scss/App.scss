@@ -1,6 +1,24 @@
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
 #root {
   height: 100vh !important; /* remove this line to see div.app is no more 100% height */
   .container-fluid {
     height: 100%;
+  }
+
+  header {
+    background: #ffffff;
+  }
+
+  .background-login {
+    min-height: 100vh;
+    background-image: linear-gradient(195deg, #42424a99, #191919bb),
+      url('../assets/images/bgImage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 }
