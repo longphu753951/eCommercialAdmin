@@ -8,9 +8,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Chart } from 'react-google-charts';
+import { styled } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import SideBar, { DrawerHeader } from '../../components/Sidebar';
+import { AttachMoney, ShoppingCart, ShoppingBasket } from '@mui/icons-material';
+import ReactApexChart from 'react-apexcharts';
 
 function createData(
   name: string,
@@ -21,6 +23,48 @@ function createData(
 ) {
   return { name, calories, fat, carbs, protein };
 }
+
+const pieSeries = [44, 55, 41, 17, 15];
+
+const series = [
+  {
+    data: [44, 55, 41, 64, 22, 43, 21],
+  },
+  {
+    data: [53, 32, 33, 52, 13, 44, 32],
+  },
+];
+
+const options = {
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      dataLabels: {
+        position: 'top',
+      },
+    },
+  },
+  dataLabels: {
+    enabled: true,
+    offsetX: -6,
+    style: {
+      fontSize: '12px',
+      colors: ['#fff'],
+    },
+  },
+  stroke: {
+    show: true,
+    width: 1,
+    colors: ['#fff'],
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+  },
+  xaxis: {
+    categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007],
+  },
+};
 
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -46,32 +90,18 @@ export const data = [
   ['Dec', 1030, 540],
 ];
 
-export const options = {
-  legend: { position: 'none' },
-  responsive: true,
-  chart: {
-    title: 'Sales statistics',
+const Container = styled(Grid)(({ theme }) => ({
+  padding: theme.spacing(1),
+
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+    flexDirection: 'row',
   },
-  colors: ['#2C7BE5', '#D2DDEC'],
-  width: 500,
-};
-
-export const pieData = [
-  ['Website growth', 'Hours per Day'],
-  ['Social Media', 11],
-  ['Affiliate visitors', 2],
-  ['Purchased visitors', 2],
-  ['By advertisement', 2],
-];
-
-export const pieOptions = {
-  legend: { position: 'bottom', maxLines: 3 },
-  pieHole: 0.9,
-  responsive: true,
-  title: 'Visitors',
-  colors: ['#2C7BE5', '#CDD2FD', '#96C0FF', '#CCF0D1'],
-  width: 500,
-};
+  [theme.breakpoints.down('md')]: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
 export default function MiniDrawer() {
   return (
@@ -93,28 +123,223 @@ export default function MiniDrawer() {
             Dashboard
           </Typography>
         </Box>
-        <Grid container >
-          <Grid item xs={5}>
-            <Chart
-              chartType="Bar"
-              height='400px'
-              width='700px'
-              data={data}
-              options={options}
-            />
+        <Container rowSpacing={2} columnSpacing={2} wrap="wrap" container>
+          <Grid item xs={10.8} sm={11} md={4}>
+            <Box
+              sx={{
+                boxShadow: 1,
+                borderRadius: 2,
+                p: 2,
+                minWidth: 300,
+                padding: '5%',
+              }}
+            >
+              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                <Grid
+                  style={{
+                    backgroundColor: '#FA9019',
+                    display: 'flex',
+                    height: '4em',
+                    width: '4em',
+                    borderRadius: '100%',
+                    justifyContent: 'center',
+                    outlineWidth: '12px',
+                    WebkitMaskImage: 'circle, white 100%, black 100%',
+                    outlineColor: 'rgba(250, 144, 25, 0.249)',
+                    outlineStyle: 'solid',
+                  }}
+                >
+                  <AttachMoney
+                    style={{
+                      color: 'white',
+                      alignSelf: 'center',
+                      width: '60%',
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  style={{
+                    display: 'flex',
+                    marginLeft: '5%',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Typography>Total Sales</Typography>
+                  <Typography
+                    sx={{ fontWeight: '600', color: '#474747' }}
+                    variant="h5"
+                    color={''}
+                    component="div"
+                  >
+                    $19,626,058.20
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+          <Grid item xs={10.8} sm={11} md={4}>
+            <Box
+              sx={{
+                boxShadow: 1,
+                borderRadius: 2,
+                p: 2,
+                minWidth: 300,
+                padding: '5%',
+              }}
+            >
+              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                <Grid
+                  style={{
+                    backgroundColor: '#2FB516',
+                    display: 'flex',
+                    height: '4em',
+                    width: '4em',
+                    borderRadius: '100%',
+                    justifyContent: 'center',
+                    outlineWidth: '12px',
+                    outlineColor: 'rgba(46, 182, 22, 0.249)',
+                    outlineStyle: 'solid',
+                  }}
+                >
+                  <ShoppingCart
+                    style={{
+                      color: 'white',
+                      alignSelf: 'center',
+                      width: '60%',
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  style={{
+                    display: 'flex',
+                    marginLeft: '5%',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Typography>Total Orders</Typography>
+                  <Typography
+                    sx={{ fontWeight: '600', color: '#474747' }}
+                    variant="h5"
+                    color={''}
+                    component="div"
+                  >
+                    3290
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+          <Grid item xs={10.8} sm={11} md={4}>
+            <Box
+              sx={{
+                boxShadow: 1,
+                borderRadius: 2,
+                p: 2,
+                minWidth: 300,
+                padding: '5%',
+              }}
+            >
+              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                <Grid
+                  style={{
+                    backgroundColor: '#3167EB',
+                    display: 'flex',
+                    height: '4em',
+                    width: '4em',
+                    borderRadius: '100%',
+                    justifyContent: 'center',
+                    outlineWidth: '12px',
+                    outlineColor: 'rgba(49, 103, 235, 0.249)',
+                    outlineStyle: 'solid',
+                  }}
+                >
+                  <ShoppingBasket
+                    style={{
+                      color: 'white',
+                      alignSelf: 'center',
+                      width: '60%',
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  style={{
+                    display: 'flex',
+                    marginLeft: '5%',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Typography>Total Products</Typography>
+                  <Typography
+                    sx={{ fontWeight: '600', color: '#474747' }}
+                    variant="h5"
+                    color={''}
+                    component="div"
+                  >
+                    322
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Container>
+        <Container container mt={7} spacing={3}>
+          <Grid item xs={11} md={8}>
+            <Box
+              height={'100%'}
+              sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
+            >
+              <ReactApexChart
+                options={options}
+                series={series}
+                height={430}
+                type={'bar'}
+              />
+            </Box>
           </Grid>
 
-          <Grid item xs={5}>
-            <Chart
-              height='400px'
-              width='700px'
-              chartType="PieChart"
-              data={pieData}
-              options={pieOptions}
-            />
+          <Grid
+            item
+            sm={11}
+            md={4}
+            style={{
+              display: 'table-cell',
+              verticalAlign: 'middle',
+              textAlign: 'center',
+            }}
+          >
+            <Box
+              justifyContent={'center'}
+              alignItems={'center'}
+              height={'100%'}
+              sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
+            >
+              <Typography>asd</Typography>
+
+              <ReactApexChart
+                options={{
+                  legend: { position: 'bottom' },
+                  plotOptions: {
+                    pie: {
+                      donut: {
+                        labels: {
+                          show: true,
+                          total: { show: true },
+                        },
+                      },
+                    },
+                  },
+                }}
+                series={pieSeries}
+                height={475}
+                type="donut"
+              />
+            </Box>
           </Grid>
-        </Grid>
-        <Grid item xs={4} spacing={5}>
+        </Container>
+        <Grid item xs={4} spacing={5} mt={10}>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
