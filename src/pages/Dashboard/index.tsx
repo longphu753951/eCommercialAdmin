@@ -4,12 +4,10 @@ import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { createTheme, Grid, ThemeProvider } from '@mui/material';
+import { createTheme, Grid, Paper, TableContainer, ThemeProvider } from '@mui/material';
 import SideBar, { DrawerHeader } from '../../components/Sidebar';
 import { AttachMoney, ShoppingCart, ShoppingBasket } from '@mui/icons-material';
 import ReactApexChart from 'react-apexcharts';
@@ -118,273 +116,281 @@ const Container = styled(Grid)(({ theme }) => ({
 export default function MiniDrawer() {
   return (
     <ThemeProvider theme={theme}>
-    <Box sx={{ display: 'flex' }}>
-      <SideBar />
-      <Box component="main" sx={{ p: 3 }} width={'100%'}>
-        <DrawerHeader />
-        <Box
-          sx={{
-            height: 100,
-          }}
-        >
-          <Typography
-            sx={{ fontWeight: '600', color: '#474747' }}
-            variant="h5"
-            color={''}
-            component="div"
-          >
-            Dashboard
-          </Typography>
-        </Box>
-        <Container rowSpacing={8} columnSpacing={2} wrap="wrap" container>
-          <Grid item xs={10.8} sm={11} md={4}>
-            <Box
-              sx={{
-                boxShadow: 1,
-                borderRadius: 2,
-                p: 2,
-                minWidth: 300,
-                padding: '5%',
-              }}
-            >
-              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
-                <Grid
-                  style={{
-                    backgroundColor: '#FA9019',
-                    display: 'flex',
-                    height: '3em',
-                    width: '3em',
-                    borderRadius: '100%',
-                    justifyContent: 'center',
-                    outlineWidth: '12px',
-                    WebkitMaskImage: 'circle, white 100%, black 100%',
-                    outlineColor: 'rgba(250, 144, 25, 0.249)',
-                    outlineStyle: 'solid',
-                  }}
-                >
-                  <AttachMoney
-                    style={{
-                      color: 'white',
-                      alignSelf: 'center',
-                      width: '60%',
-                    }}
-                  />
-                </Grid>
-                <Grid
-                  style={{
-                    display: 'flex',
-                    marginLeft: '5%',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography>Total Sales</Typography>
-                  <Typography
-                    sx={{ fontWeight: '600', color: '#474747' }}
-                    variant="h5"
-                    color={''}
-                    component="div"
-                  >
-                    $19,626,058.20
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-          <Grid item xs={10.8} sm={11} md={4}>
-            <Box
-              sx={{
-                boxShadow: 1,
-                borderRadius: 2,
-                p: 2,
-                minWidth: 300,
-                padding: '5%',
-              }}
-            >
-              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
-                <Grid
-                  style={{
-                    backgroundColor: '#2FB516',
-                    display: 'flex',
-                    height: '3em',
-                    width: '3em',
-                    borderRadius: '100%',
-                    justifyContent: 'center',
-                    outlineWidth: '12px',
-                    outlineColor: 'rgba(46, 182, 22, 0.249)',
-                    outlineStyle: 'solid',
-                  }}
-                >
-                  <ShoppingCart
-                    style={{
-                      color: 'white',
-                      alignSelf: 'center',
-                      width: '60%',
-                    }}
-                  />
-                </Grid>
-                <Grid
-                  style={{
-                    display: 'flex',
-                    marginLeft: '5%',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography>Total Orders</Typography>
-                  <Typography
-                    sx={{ fontWeight: '600', color: '#474747' }}
-                    variant="h5"
-                    color={''}
-                    component="div"
-                  >
-                    3290
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-          <Grid item xs={10.8} sm={11} md={4}>
-            <Box
-              sx={{
-                boxShadow: 1,
-                borderRadius: 2,
-                p: 2,
-                minWidth: 300,
-                padding: '5%',
-              }}
-            >
-              <Grid style={{ display: 'flex', flexDirection: 'row' }}>
-                <Grid
-                  style={{
-                    backgroundColor: '#3167EB',
-                    display: 'flex',
-                    height: '3em',
-                    width: '3em',
-                    borderRadius: '100%',
-                    justifyContent: 'center',
-                    outlineWidth: '12px',
-                    outlineColor: 'rgba(49, 103, 235, 0.249)',
-                    outlineStyle: 'solid',
-                  }}
-                >
-                  <ShoppingBasket
-                    style={{
-                      color: 'white',
-                      alignSelf: 'center',
-                      width: '60%',
-                    }}
-                  />
-                </Grid>
-                <Grid
-                  style={{
-                    display: 'flex',
-                    marginLeft: '5%',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography>Total Products</Typography>
-                  <Typography
-                    sx={{ fontWeight: '600', color: '#474747' }}
-                    variant="h5"
-                    color={''}
-                    component="div"
-                  >
-                    322
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-        </Container>
-        <Container container mt={7} spacing={3}>
-          <Grid item xs ={11} md={8}>
-            <Box
-              height={'100%'}
-              sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
-            >
-              <ReactApexChart
-                options={options}
-                series={series}
-                height={430}
-                type={'bar'}
-              />
-            </Box>
-          </Grid>
-
-          <Grid
-            item
-            xs ={11}
-            md={4}
-            style={{
-              display: 'table-cell',
-              verticalAlign: 'middle',
-              textAlign: 'center',
+      <Box sx={{ display: 'flex' }}>
+        <SideBar />
+        <Box component="main" sx={{ p: 3 }} width={'100%'}>
+          <DrawerHeader />
+          <Box
+            sx={{
+              height: 100,
             }}
           >
-            <Box
-              justifyContent={'center'}
-              alignItems={'center'}
-              height={'100%'}
-              sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
+            <Typography
+              sx={{ fontWeight: '600', color: '#474747' }}
+              variant="h5"
+              color={''}
+              component="div"
             >
-              <Typography>asd</Typography>
+              Dashboard
+            </Typography>
+          </Box>
+          <Container
+            rowSpacing={{
+              xs: 4,
+              sm: 8,
+            }}
+            columnSpacing={2}
+            wrap="wrap"
+            container
+          >
+            <Grid item xs={10.8} sm={11} md={4}>
+              <Box
+                sx={{
+                  boxShadow: 1,
+                  borderRadius: 2,
+                  p: 2,
+                  minWidth: 300,
+                  padding: '5%',
+                }}
+              >
+                <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                  <Grid
+                    style={{
+                      backgroundColor: '#FA9019',
+                      display: 'flex',
+                      height: '3em',
+                      width: '3em',
+                      borderRadius: '100%',
+                      justifyContent: 'center',
+                      outlineWidth: '12px',
+                      WebkitMaskImage: 'circle, white 100%, black 100%',
+                      outlineColor: 'rgba(250, 144, 25, 0.249)',
+                      outlineStyle: 'solid',
+                    }}
+                  >
+                    <AttachMoney
+                      style={{
+                        color: 'white',
+                        alignSelf: 'center',
+                        width: '60%',
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    style={{
+                      display: 'flex',
+                      marginLeft: '5%',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography>Total Sales</Typography>
+                    <Typography
+                      sx={{ fontWeight: '600', color: '#474747' }}
+                      variant="h5"
+                      color={''}
+                      component="div"
+                    >
+                      $19,626,058.20
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+            <Grid item xs={10.8} sm={11} md={4}>
+              <Box
+                sx={{
+                  boxShadow: 1,
+                  borderRadius: 2,
+                  p: 2,
+                  minWidth: 300,
+                  padding: '5%',
+                }}
+              >
+                <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                  <Grid
+                    style={{
+                      backgroundColor: '#2FB516',
+                      display: 'flex',
+                      height: '3em',
+                      width: '3em',
+                      borderRadius: '100%',
+                      justifyContent: 'center',
+                      outlineWidth: '12px',
+                      outlineColor: 'rgba(46, 182, 22, 0.249)',
+                      outlineStyle: 'solid',
+                    }}
+                  >
+                    <ShoppingCart
+                      style={{
+                        color: 'white',
+                        alignSelf: 'center',
+                        width: '60%',
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    style={{
+                      display: 'flex',
+                      marginLeft: '5%',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography>Total Orders</Typography>
+                    <Typography
+                      sx={{ fontWeight: '600', color: '#474747' }}
+                      variant="h5"
+                      color={''}
+                      component="div"
+                    >
+                      3290
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+            <Grid item xs={10.8} sm={11} md={4}>
+              <Box
+                sx={{
+                  boxShadow: 1,
+                  borderRadius: 2,
+                  p: 2,
+                  minWidth: 300,
+                  padding: '5%',
+                }}
+              >
+                <Grid style={{ display: 'flex', flexDirection: 'row' }}>
+                  <Grid
+                    style={{
+                      backgroundColor: '#3167EB',
+                      display: 'flex',
+                      height: '3em',
+                      width: '3em',
+                      borderRadius: '100%',
+                      justifyContent: 'center',
+                      outlineWidth: '12px',
+                      outlineColor: 'rgba(49, 103, 235, 0.249)',
+                      outlineStyle: 'solid',
+                    }}
+                  >
+                    <ShoppingBasket
+                      style={{
+                        color: 'white',
+                        alignSelf: 'center',
+                        width: '60%',
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    style={{
+                      display: 'flex',
+                      marginLeft: '5%',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Typography>Total Products</Typography>
+                    <Typography
+                      sx={{ fontWeight: '600', color: '#474747' }}
+                      variant="h5"
+                      color={''}
+                      component="div"
+                    >
+                      322
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+          </Container>
+          <Container container mt={7} spacing={3}>
+            <Grid item xs={11} md={8}>
+              <Box
+                height={'100%'}
+                sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
+              >
+                <ReactApexChart
+                  options={options}
+                  series={series}
+                  height={430}
+                  type={'bar'}
+                />
+              </Box>
+            </Grid>
 
-              <ReactApexChart
-                options={{
-                  legend: { position: 'bottom' },
-                  plotOptions: {
-                    pie: {
-                      donut: {
-                        labels: {
-                          show: true,
-                          total: { show: true },
+            <Grid
+              item
+              xs={11}
+              md={4}
+              style={{
+                display: 'table-cell',
+                verticalAlign: 'middle',
+                textAlign: 'center',
+              }}
+            >
+              <Box
+                justifyContent={'center'}
+                alignItems={'center'}
+                height={'100%'}
+                sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
+              >
+                <Typography>asd</Typography>
+
+                <ReactApexChart
+                  options={{
+                    legend: { position: 'bottom' },
+                    plotOptions: {
+                      pie: {
+                        donut: {
+                          labels: {
+                            show: true,
+                            total: { show: true },
+                          },
                         },
                       },
                     },
-                  },
-                }}
-                series={pieSeries}
-                height={475}
-                type="donut"
-              />
-            </Box>
-          </Grid>
-        </Container>
-        <Grid item xs={4} spacing={5} mt={10} >
+                  }}
+                  series={pieSeries}
+                  height={475}
+                  type="donut"
+                />
+              </Box>
+            </Grid>
+          </Container>
+          <Grid item width={'100%'} md={43} mt={5}>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Dessert (100g serving)</TableCell>
+                    <TableCell align="right">Calories</TableCell>
+                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.name}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">{row.calories}</TableCell>
+                      <TableCell align="right">{row.fat}</TableCell>
+                      <TableCell align="right">{row.carbs}</TableCell>
+                      <TableCell align="right">{row.protein}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+        </Box>
       </Box>
-    </Box>
     </ThemeProvider>
   );
 }
