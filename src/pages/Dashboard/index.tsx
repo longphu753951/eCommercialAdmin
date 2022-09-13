@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { createTheme, Grid, ThemeProvider } from '@mui/material';
 import SideBar, { DrawerHeader } from '../../components/Sidebar';
 import { AttachMoney, ShoppingCart, ShoppingBasket } from '@mui/icons-material';
 import ReactApexChart from 'react-apexcharts';
@@ -34,6 +34,18 @@ const series = [
     data: [53, 32, 33, 52, 13, 44, 32],
   },
 ];
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1080,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 const options = {
   plotOptions: {
@@ -105,6 +117,7 @@ const Container = styled(Grid)(({ theme }) => ({
 
 export default function MiniDrawer() {
   return (
+    <ThemeProvider theme={theme}>
     <Box sx={{ display: 'flex' }}>
       <SideBar />
       <Box component="main" sx={{ p: 3 }} width={'100%'}>
@@ -123,7 +136,7 @@ export default function MiniDrawer() {
             Dashboard
           </Typography>
         </Box>
-        <Container rowSpacing={2} columnSpacing={2} wrap="wrap" container>
+        <Container rowSpacing={8} columnSpacing={2} wrap="wrap" container>
           <Grid item xs={10.8} sm={11} md={4}>
             <Box
               sx={{
@@ -139,8 +152,8 @@ export default function MiniDrawer() {
                   style={{
                     backgroundColor: '#FA9019',
                     display: 'flex',
-                    height: '4em',
-                    width: '4em',
+                    height: '3em',
+                    width: '3em',
                     borderRadius: '100%',
                     justifyContent: 'center',
                     outlineWidth: '12px',
@@ -193,8 +206,8 @@ export default function MiniDrawer() {
                   style={{
                     backgroundColor: '#2FB516',
                     display: 'flex',
-                    height: '4em',
-                    width: '4em',
+                    height: '3em',
+                    width: '3em',
                     borderRadius: '100%',
                     justifyContent: 'center',
                     outlineWidth: '12px',
@@ -246,8 +259,8 @@ export default function MiniDrawer() {
                   style={{
                     backgroundColor: '#3167EB',
                     display: 'flex',
-                    height: '4em',
-                    width: '4em',
+                    height: '3em',
+                    width: '3em',
                     borderRadius: '100%',
                     justifyContent: 'center',
                     outlineWidth: '12px',
@@ -286,7 +299,7 @@ export default function MiniDrawer() {
           </Grid>
         </Container>
         <Container container mt={7} spacing={3}>
-          <Grid item xs={11} md={8}>
+          <Grid item xs ={11} md={8}>
             <Box
               height={'100%'}
               sx={{ boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300 }}
@@ -302,7 +315,7 @@ export default function MiniDrawer() {
 
           <Grid
             item
-            sm={11}
+            xs ={11}
             md={4}
             style={{
               display: 'table-cell',
@@ -339,7 +352,7 @@ export default function MiniDrawer() {
             </Box>
           </Grid>
         </Container>
-        <Grid item xs={4} spacing={5} mt={10}>
+        <Grid item xs={4} spacing={5} mt={10} >
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -372,5 +385,6 @@ export default function MiniDrawer() {
         </Grid>
       </Box>
     </Box>
+    </ThemeProvider>
   );
 }
