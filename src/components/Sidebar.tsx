@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
+import { Drawer, Collapse } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -9,14 +9,17 @@ import {
   Dashboard,
   Inventory,
   ShoppingCart,
-  People, BarChart,
+  People,
+  BarChart,
   Reviews,
   CreditCard,
   Language,
   LocalOffer,
-   Brush,
-   Settings,
-   } from '@mui/icons-material';
+  Brush,
+  Settings,
+  ExpandMore,
+  ExpandLess,
+} from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -40,51 +43,60 @@ const openedMixin = (theme: Theme): CSSObject => ({
 const listIconSetting = [
   {
     text: 'Appearance',
-    icon: <Brush/>,
+    icon: <Brush />,
   },
   {
     text: 'Settings',
-    icon: <Settings/>,
+    icon: <Settings />,
   },
-
 ];
 
 const listIcon = [
   {
     text: 'Dashboard',
-    icon: <Dashboard/>,
+    icon: <Dashboard />,
+    subItem: [
+      {
+        text: 'Appearance',
+        icon: <Brush />,
+      },
+      {
+        text: 'Settings',
+        icon: <Settings />,
+      },
+    ],
   },
   {
     text: 'Products',
-    icon: <Inventory/>,
+    icon: <Inventory />,
   },
   {
     text: 'Orders',
-    icon: <ShoppingCart/>,
+    icon: <ShoppingCart />,
   },
   {
     text: 'Customers',
-    icon: <People/>,
+    icon: <People />,
   },
   {
     text: 'Statistics',
-    icon: <BarChart/>,
+    icon: <BarChart />,
   },
   {
     text: 'Reviews',
-    icon: <Reviews/>,
+    icon: <Reviews />,
   },
   {
     text: 'Transactions',
-    icon: <CreditCard/>,
+    icon: <CreditCard />,
   },
   {
     text: 'Sellers',
-    icon: <Language/>,
+    icon: <Language />,
   },
   {
     text: 'Hot offers',
-    icon: <LocalOffer/>,
+    icon: <LocalOffer />,
   },
 ];
 
@@ -131,7 +143,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, {
+const MuiDrawer = styled(Drawer, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
   width: drawerWidth,
@@ -179,7 +191,7 @@ export default function SideBar() {
           <InputBase />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <MuiDrawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
@@ -192,8 +204,19 @@ export default function SideBar() {
         <Divider />
         <List>
           {listIcon.map((item) => {
+            const [open, setOpen] = React.useState(true);
+
+            const handleClick = () => {
+              setOpen(!open);
+            };
+
             return (
-              <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+              <ListItem
+                key={item.text}
+                disablePadding
+                onClick={handleClick}
+                sx={{ display: 'block' }}
+              >
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -210,8 +233,47 @@ export default function SideBar() {
                   >
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText
+                    primary={item.text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                  { open ? <ExpandMore /> : <ExpandLess />}
                 </ListItemButton>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {item.subItem && item.subItem.map((item) => {
+                      return (
+                        <ListItem
+                          key={item.text}
+                          disablePadding
+                          sx={{ display: 'block' }}
+                        >
+                          <ListItemButton
+                            sx={{
+                              minHeight: 48,
+                              justifyContent: open ? 'initial' : 'center',
+                              px: 2.5,
+                            }}
+                          >
+                            <ListItemIcon
+                              sx={{
+                                minWidth: 0,
+                                mr: open ? 3 : 'auto',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              {item.icon}
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={item.text}
+                              sx={{ opacity: open ? 1 : 0 }}
+                            />
+                          </ListItemButton>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Collapse>
               </ListItem>
             );
           })}
@@ -220,7 +282,11 @@ export default function SideBar() {
         <List>
           {listIconSetting.map((item) => {
             return (
-              <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+              <ListItem
+                key={item.text}
+                disablePadding
+                sx={{ display: 'block' }}
+              >
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -237,7 +303,10 @@ export default function SideBar() {
                   >
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText
+                    primary={item.text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
                 </ListItemButton>
               </ListItem>
             );
@@ -268,7 +337,7 @@ export default function SideBar() {
             </ListItem>
           ))}
         </List> */}
-      </Drawer>
+      </MuiDrawer>
     </>
   );
 }
