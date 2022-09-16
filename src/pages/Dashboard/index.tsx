@@ -116,7 +116,9 @@ const Container = styled(Grid)(({ theme }) => ({
 export default function MiniDrawer() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', paddingLeft: {
+        sx: '2px',
+      } }}>
         <SideBar />
         <Box component="main" sx={{ p: 3 }} width={'100%'}>
           <DrawerHeader />

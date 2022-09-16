@@ -58,11 +58,9 @@ const listIcon = [
     subItem: [
       {
         text: 'Appearance',
-        icon: <Brush />,
       },
       {
         text: 'Settings',
-        icon: <Settings />,
       },
     ],
   },
@@ -191,7 +189,11 @@ export default function SideBar() {
           <InputBase />
         </Toolbar>
       </AppBar>
-      <MuiDrawer variant="permanent" open={open}>
+      <MuiDrawer
+
+        variant="permanent"
+        open={open}
+      >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
@@ -202,9 +204,9 @@ export default function SideBar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List >
           {listIcon.map((item) => {
-            const [open, setOpen] = React.useState(true);
+            const [open, setOpen] = React.useState(false);
 
             const handleClick = () => {
               setOpen(!open);
@@ -220,58 +222,35 @@ export default function SideBar() {
                 <ListItemButton
                   sx={{
                     minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
+
                     px: 2.5,
                   }}
                 >
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
-                      mr: open ? 3 : 'auto',
+                      mr: 3,
                       justifyContent: 'center',
                     }}
                   >
                     {item.icon}
                   </ListItemIcon>
-                  <ListItemText
-                    primary={item.text}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                  { open ? <ExpandMore /> : <ExpandLess />}
+                  <ListItemText primary={item.text} />
+                  {item.subItem && (open ? <ExpandLess /> : <ExpandMore />)}
                 </ListItemButton>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {item.subItem && item.subItem.map((item) => {
-                      return (
-                        <ListItem
-                          key={item.text}
-                          disablePadding
-                          sx={{ display: 'block' }}
-                        >
-                          <ListItemButton
-                            sx={{
-                              minHeight: 48,
-                              justifyContent: open ? 'initial' : 'center',
-                              px: 2.5,
-                            }}
-                          >
-                            <ListItemIcon
-                              sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                              }}
-                            >
-                              {item.icon}
-                            </ListItemIcon>
+                    {item.subItem &&
+                      item.subItem.map((item) => {
+                        return (
+                          <ListItemButton key={item.text} sx={{ pl: 8.5 }}>
                             <ListItemText
+                              sx={{ fontSize: 5 }}
                               primary={item.text}
-                              sx={{ opacity: open ? 1 : 0 }}
                             />
                           </ListItemButton>
-                        </ListItem>
-                      );
-                    })}
+                        );
+                      })}
                   </List>
                 </Collapse>
               </ListItem>
@@ -312,31 +291,7 @@ export default function SideBar() {
             );
           })}
         </List>
-        {/* <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List> */}
+
       </MuiDrawer>
     </>
   );
