@@ -55,18 +55,24 @@ const listIcon = [
   {
     text: 'Dashboard',
     icon: <Dashboard />,
-    subItem: [
-      {
-        text: 'Appearance',
-      },
-      {
-        text: 'Settings',
-      },
-    ],
   },
   {
     text: 'Products',
     icon: <Inventory />,
+    subItem: [
+      {
+        text: 'Add product',
+      },
+      {
+        text: 'Product list',
+      },
+      {
+        text: 'Categories',
+      },
+      {
+        text: 'Brands',
+      },
+    ],
   },
   {
     text: 'Orders',

@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { createTheme, Grid, Paper, TableContainer, ThemeProvider } from '@mui/material';
-import SideBar, { DrawerHeader } from '../../components/Sidebar';
+import SideBar, { DrawerHeader } from '../../../components/Sidebar';
 import { AttachMoney, ShoppingCart, ShoppingBasket } from '@mui/icons-material';
 import ReactApexChart from 'react-apexcharts';
 
@@ -113,13 +113,8 @@ const Container = styled(Grid)(({ theme }) => ({
   },
 }));
 
-export default function MiniDrawer() {
+ const Dashboard = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex', paddingLeft: {
-        sx: '2px',
-      } }}>
-        <SideBar />
         <Box component="main" sx={{ p: 3 }} width={'100%'}>
           <DrawerHeader />
           <Box
@@ -160,14 +155,16 @@ export default function MiniDrawer() {
                     style={{
                       backgroundColor: '#FA9019',
                       display: 'flex',
-                      height: '3em',
-                      width: '3em',
+                      height: '2.5em',
+                      width: '2.5em',
                       borderRadius: '100%',
                       justifyContent: 'center',
                       outlineWidth: '12px',
                       WebkitMaskImage: 'circle, white 100%, black 100%',
                       outlineColor: 'rgba(250, 144, 25, 0.249)',
                       outlineStyle: 'solid',
+                      alignSelf: 'center',
+                      marginInline: '0.5em',
                     }}
                   >
                     <AttachMoney
@@ -214,13 +211,15 @@ export default function MiniDrawer() {
                     style={{
                       backgroundColor: '#2FB516',
                       display: 'flex',
-                      height: '3em',
-                      width: '3em',
+                      height: '2.5em',
+                      width: '2.5em',
                       borderRadius: '100%',
                       justifyContent: 'center',
                       outlineWidth: '12px',
                       outlineColor: 'rgba(46, 182, 22, 0.249)',
                       outlineStyle: 'solid',
+                      alignSelf: 'center',
+                      marginInline: '0.5em',
                     }}
                   >
                     <ShoppingCart
@@ -267,13 +266,15 @@ export default function MiniDrawer() {
                     style={{
                       backgroundColor: '#3167EB',
                       display: 'flex',
-                      height: '3em',
-                      width: '3em',
+                      height: '2.5em',
+                      width: '2.5em',
                       borderRadius: '100%',
                       justifyContent: 'center',
                       outlineWidth: '12px',
                       outlineColor: 'rgba(49, 103, 235, 0.249)',
                       outlineStyle: 'solid',
+                      alignSelf: 'center',
+                      marginInline: '0.5em',
                     }}
                   >
                     <ShoppingBasket
@@ -392,7 +393,8 @@ export default function MiniDrawer() {
             </TableContainer>
           </Grid>
         </Box>
-      </Box>
-    </ThemeProvider>
+
   );
-}
+};
+
+export default Dashboard;
