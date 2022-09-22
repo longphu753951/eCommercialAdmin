@@ -10,7 +10,7 @@ import Login from '../pages/Login';
 const RoutesContainer = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/admin" element={<Admin />}>
         <Route index element={<Dashboard />} />
         <Route
