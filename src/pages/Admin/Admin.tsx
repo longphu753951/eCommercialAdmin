@@ -1,13 +1,8 @@
-import DashboardPage from './Dashboard';
 import { Box, createTheme } from '@mui/material';
 import React from 'react';
 import { ThemeProvider } from 'react-bootstrap';
 import SideBar from '../../components/Sidebar';
-import {
-    createHashRouter,
-    RouterProvider,
-  } from 'react-router-dom';
-
+import { Outlet } from 'react-router-dom';
 
 const theme = createTheme({
   breakpoints: {
@@ -20,19 +15,6 @@ const theme = createTheme({
     },
   },
 });
-
-const Router = createHashRouter([
-    {
-      path: '/admin',
-
-      children: [
-        {
-          path: 'dashboard',
-          element: <DashboardPage />,
-        },
-      ],
-    },
-  ]);
 
 const Admin = () => {
   return (
@@ -47,7 +29,7 @@ const Admin = () => {
       >
         <SideBar />
         <Box component="main" sx={{ p: 3 }} width={'100%'}>
-          <Router/>
+          <Outlet/>
         </Box>
       </Box>
     </ThemeProvider>
