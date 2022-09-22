@@ -1,8 +1,8 @@
 import { Route } from 'react-router-dom';
-import Dashboard from '../pages/Dashboard';
+import Admin from '../pages/Admin/Admin';
 
 const AuthRoutes = () => {
-  return <Route path="/dashboard" element={<Dashboard />}></Route>;
+  return null;
 };
 
 export default AuthRoutes;
